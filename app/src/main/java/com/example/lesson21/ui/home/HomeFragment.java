@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.lesson21.Model.TaskModel;
 import com.example.lesson21.adapter.NoteAdapter;
 import com.example.lesson21.databinding.FragmentHomeBinding;
 import com.example.lesson21.utils.Constants;
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment {
     }
     private void getData() {
         getParentFragmentManager().setFragmentResultListener(Constants.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
-            String text = result.getString(Constants.BUNDLE_KEY);
+            TaskModel text = (TaskModel) result.getSerializable(Constants.BUNDLE_KEY);
             adapter.addTask(text);
         });
     }
@@ -45,5 +46,4 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

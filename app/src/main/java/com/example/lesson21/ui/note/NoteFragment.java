@@ -40,7 +40,7 @@ public class NoteFragment extends Fragment {
                 return;
             }
             Bundle bundle = new Bundle();
-            bundle.putString(Constants.BUNDLE_KEY, text);
+            bundle.putSerializable(Constants.BUNDLE_KEY, text);
             getParentFragmentManager().setFragmentResult(Constants.REQUEST_KEY, bundle);
             close();
         });
