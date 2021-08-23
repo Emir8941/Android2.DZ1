@@ -7,19 +7,30 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lesson21.Model.TaskModel;
+import com.example.lesson21.Model.NoteModel;
 import com.example.lesson21.databinding.NoteItemBinding;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> {
     NoteItemBinding binding;
-    ArrayList<TaskModel> list = new ArrayList<>();
+     ArrayList<NoteModel> list = new ArrayList<>();
 
-    public void addTask(TaskModel text) {
+    public void addTask(NoteModel text) {
         list.add(text);
+        notifyDataSetChanged();
+    }
+
+    public NoteModel getNoteAt(int position) {
+        return list.get(position);
+    }
+
+    public void setList(List<NoteModel> models) {
+        list.clear();
+        list.addAll(models);
         notifyDataSetChanged();
     }
 
@@ -47,8 +58,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
             super(binding);
         }
 
-        private void onBind(TaskModel s) {
+        private void onBind(NoteModel s) {
             binding.itemTitle.setText(s.getTitle());
+            binding.itemTime.setText(s.getDate());
         }
     }
 }

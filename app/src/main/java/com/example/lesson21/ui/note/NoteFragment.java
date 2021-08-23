@@ -13,9 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.lesson21.Model.NoteModel;
 import com.example.lesson21.R;
 import com.example.lesson21.databinding.FragmentNoteBinding;
+import com.example.lesson21.utils.App;
 import com.example.lesson21.utils.Constants;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class NoteFragment extends Fragment {
@@ -29,7 +34,14 @@ public class NoteFragment extends Fragment {
         initView(navController);
         return binding.getRoot();
     }
+    public String getDateConverter(){
+        SimpleDateFormat formatter = new  SimpleDateFormat("dd MMMM HH:mm");
+        Date date = new Date();
+       return formatter.format(date);
+    }
+
     private void initView(NavController navController) {
+        binding.time.setText(getDateConverter());
         binding.btnBack.setOnClickListener(v -> {
             close();
         });
@@ -39,8 +51,11 @@ public class NoteFragment extends Fragment {
                 binding.etText.setError("Введите текст");
                 return;
             }
+            NoteModel model = new NoteModel(text,getDateConverter());
+            App.getDatabase().getDao().insertNote(model);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constants.BUNDLE_KEY, text);
+            bundle.putSerializable(Constants.BUNDLE_KEY, model);
+            bundle.putSerializable(Constants.BUNDLE_TIME,model);
             getParentFragmentManager().setFragmentResult(Constants.REQUEST_KEY, bundle);
             close();
         });
