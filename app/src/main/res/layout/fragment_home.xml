@@ -18,7 +18,7 @@
         android:background="@drawable/search_title"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="14dp"
-        android:hint="Поиск заметок"
+        android:hint="@string/saerch"
         android:textColor="@color/white"
         android:padding="16dp"
         android:textColorHint="#505050"

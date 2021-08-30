@@ -22,11 +22,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="35dp"
                 android:textAlignment="center"
-                android:text="Заметки"
+                android:text="@string/Name"
                 android:textColor="@color/gray"
-                android:textSize="20sp"
+                android:textSize="@dimen/normSize"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>

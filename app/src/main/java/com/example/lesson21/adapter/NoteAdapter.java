@@ -3,12 +3,13 @@ package com.example.lesson21.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lesson21.Model.NoteModel;
-import com.example.lesson21.databinding.NoteItemBinding;
+import com.example.lesson21.model.NoteModel;
+import com.example.lesson21.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -16,14 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> {
-    NoteItemBinding binding;
-     ArrayList<NoteModel> list = new ArrayList<>();
+    List<NoteModel> list = new ArrayList<>();
 
     public void addTask(NoteModel text) {
         list.add(text);
         notifyDataSetChanged();
     }
-
     public NoteModel getNoteAt(int position) {
         return list.get(position);
     }
@@ -34,13 +33,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
         notifyDataSetChanged();
     }
 
-    @NonNull
-    @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-
-        binding = NoteItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new MyViewHolder(binding.getRoot());
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -53,14 +49,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
         return list.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public void filterList(ArrayList<NoteModel> filteredList){
+        list = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView itemTitle, itemTime;
         public MyViewHolder(@NonNull @NotNull View binding) {
             super(binding);
+            itemTitle = binding.findViewById(R.id.item_title);
+            itemTime = binding.findViewById(R.id.item_time);
         }
 
         private void onBind(NoteModel s) {
-            binding.itemTitle.setText(s.getTitle());
-            binding.itemTime.setText(s.getDate());
+           itemTitle.setText(s.getTitle());
+           itemTime.setText(s.getDate());
         }
     }
 }

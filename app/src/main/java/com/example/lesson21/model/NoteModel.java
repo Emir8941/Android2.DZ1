@@ -1,4 +1,4 @@
-package com.example.lesson21.Model;
+package com.example.lesson21.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,8 +9,7 @@ import java.io.Serializable;
 public class NoteModel implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String title;
-    private String date;
+    private String title, date;
 
     public int getId() {
         return id;

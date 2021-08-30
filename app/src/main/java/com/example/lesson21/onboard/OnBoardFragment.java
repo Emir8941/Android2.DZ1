@@ -8,21 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.lesson21.R;
-import com.example.lesson21.databinding.FragmentHomeBinding;
 import com.example.lesson21.databinding.FragmentOnBoardBinding;
 import com.example.lesson21.utils.PrefHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
 public class OnBoardFragment extends Fragment {
     FragmentOnBoardBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       PrefHelper.init(requireContext());
-       PrefHelper.setOnBoardIsShow();
-        return inflater.inflate(R.layout.fragment_on_board, container, false);
+        binding = FragmentOnBoardBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
 
     @Override
@@ -32,8 +34,8 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void viewAdd() {
-        ViewAdapter viewPagerAdapter = new ViewAdapter(getActivity().getSupportFragmentManager());
-        binding.viewPager.setAdapter(viewPagerAdapter);
+        ViewAdapter viewAdapter = new ViewAdapter(getActivity().getSupportFragmentManager());
+        binding.viewPager.setAdapter(viewAdapter);
 
     }
 }

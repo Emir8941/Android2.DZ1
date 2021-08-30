@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
     tools:context=".onboard.TwoFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="287dp"
         android:layout_height="264dp"
         android:layout_marginLeft="@dimen/margin_top_60dp"
-        android:layout_marginTop="120dp"
-        app:lottie_repeatCount="9999999"
+        android:layout_marginTop="110dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/two"/>
+        app:lottie_rawRes="@raw/three"
+        app:lottie_repeatCount="9999999" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="205dp"
+        android:text="Быстрый, качественный продукт"
+        android:textAlignment="center"
+        android:textColor="#F3F3F3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="19dp"
+        android:text="Пропустить"
+        android:textColor="@color/orange"
+        android:textSize="18dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
